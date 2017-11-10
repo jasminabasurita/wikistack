@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const pg = require('pg');
 const morgan = require('morgan');
 const nunjucks = require('nunjucks');
+// const
 const routes = require('./routes')
 
 // point nunjucks to the directory containing templates and turn off caching; configure returns an Environment
