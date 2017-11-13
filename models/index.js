@@ -13,12 +13,13 @@ const Page = db.define('page', {
   content: {type: Sequelize.STRING, allowNull: false},
   status: Sequelize.ENUM('open', 'closed'),
   date: {type: Sequelize.DATE, defaultValue: Sequelize.NOW},
+  // status: Sequelize.BOOLEAN
+}, {
   getterMethods: {
     route() {
       return '/wiki/' + this.getDataValue('urlTitle');
     }
   }
-  // status: Sequelize.BOOLEAN
 });
 
 module.exports = {
