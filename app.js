@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const pg = require('pg');
 const morgan = require('morgan');
 const nunjucks = require('nunjucks');
-// const
-const routes = require('./routes')
+const models = require('./models');
+const routes = require('./routes');
 
 // point nunjucks to the directory containing templates and turn off caching; configure returns an Environment
 // instance, which we'll want to use to add Markdown support later.
@@ -23,6 +23,10 @@ app.use(bodyParser.json());
 
 app.use(routes);
 
-app.listen(3000, function(){
-  console.log('listening on port 3000')
-});
+models.db.sync({ force: true })
+.then(function(){
+  app.listen(3000, function(){
+    console.log('listening on port 3000')
+  });
+})
+.catch(console.error);
