@@ -19,8 +19,8 @@ const Page = db.define('page', {
     route() {
       return '/wiki/' + this.getDataValue('urlTitle');
     }
-  }
-}, {
+  },
+
   hooks: {
     beforeValidate: (page) => {
       console.log(page);
