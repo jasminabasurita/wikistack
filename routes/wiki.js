@@ -10,23 +10,25 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-  var urlTitle = req.body.title.split(' ')
-  .join('_')
-  .replace(/\W/g, 'x');
   var page = Page.build({
       title: req.body.title,
       content: req.body.content,
-      urlTitle: urlTitle,
       status: req.body.page_status,
   })
   page.save();
-  res.redirect('/');
+  res.json(page);
 });
 
 router.get('/add', (req, res, next) => {
   res.render('addpage')
 });
 
-
+router.get('/:page', (req, res, next) => {
+  res.json(Page.findAll({
+    where: {
+      urlTitle: req.params.page
+    }
+  }))
+})
 
 module.exports = router;

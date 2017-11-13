@@ -20,6 +20,16 @@ const Page = db.define('page', {
       return '/wiki/' + this.getDataValue('urlTitle');
     }
   }
+}, {
+  hooks: {
+    beforeValidate: (page) => {
+      console.log(page);
+      var urlTitle = page.title.split(' ')
+      .join('_')
+      .replace(/\W/g, 'x');
+      page.urlTitle = urlTitle;
+    }
+  }
 });
 
 module.exports = {
