@@ -9,7 +9,7 @@ const User = db.define('user', {
 
 const Page = db.define('page', {
   title: {type: Sequelize.STRING, allowNull: false},
-  urlTitle: {type: Sequelize.STRING, allowNull: false},
+  urlTitle: {type: Sequelize.STRING, isAlphanumeric: true, allowNull: false},
   content: {type: Sequelize.STRING, allowNull: false},
   status: Sequelize.ENUM('open', 'closed'),
   date: {type: Sequelize.DATE, defaultValue: Sequelize.NOW},
